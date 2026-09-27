@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>不規則動詞テスト（レベル５）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=BIZ+UDPGothic:wght@400;700&display=swap">
+<style>
+:root{
+  --bg:#F3F5F4; --surface:#FFFFFF; --ink:#1B2624; --muted:#5E6B68; --line:#D5DDDA;
+  --green:#2F8F5B; --green-ink:#FFFFFF; --green-soft:#E3F2E9;
+  --accent:#23566B; --accent-soft:#E2EDF1; --blank:#F7FAF9;
+  --ok:#2F8F5B; --ok-soft:#E3F2E9; --ng:#B3452E; --ng-soft:#FBE7E2; --chk:#8C6A12; --chk-soft:#FFF4D6;
+  --jp:"BIZ UDPGothic","Hiragino Sans","Yu Gothic",sans-serif;
+  --de:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#121917; --surface:#1B2421; --ink:#E6EDEA; --muted:#98A6A2; --line:#2F3B38;
+    --green:#3FA86F; --green-ink:#0D1411; --green-soft:#1F3328;
+    --accent:#7FB8CC; --accent-soft:#1D2E35; --blank:#16201D;
+    --ok:#5CC48A; --ok-soft:#1F3328; --ng:#E8836C; --ng-soft:#3A2420; --chk:#E5C66E; --chk-soft:#3A3220;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#121917; --surface:#1B2421; --ink:#E6EDEA; --muted:#98A6A2; --line:#2F3B38;
+  --green:#3FA86F; --green-ink:#0D1411; --green-soft:#1F3328;
+  --accent:#7FB8CC; --accent-soft:#1D2E35; --blank:#16201D;
+  --ok:#5CC48A; --ok-soft:#1F3328; --ng:#E8836C; --ng-soft:#3A2420; --chk:#E5C66E; --chk-soft:#3A3220;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--jp);font-size:15px;line-height:1.5}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:20px 40px;display:flex;flex-direction:column;gap:18px}
+h1{font-size:20px;margin:0;font-weight:700;text-wrap:balance}
+.sub{color:var(--muted);font-size:13px;margin:2px 0 0}
+
+.levels{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.levels .lab{color:var(--muted);font-size:13px;margin-right:4px}
+.lv{font:inherit;font-size:14px;padding:6px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.lv[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface);font-weight:700}
+.lvnote{color:var(--muted);font-size:12.5px;width:100%}
+
+.btn{font:inherit;font-size:14px;padding:9px 16px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn.primary{background:var(--green);border-color:var(--green);color:var(--green-ink);font-weight:700}
+.btn.big{font-size:16px;padding:12px 28px;align-self:flex-start}
+button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.empty{color:var(--muted);text-align:center;padding:36px 12px;border:1.5px dashed var(--line);border-radius:12px}
+
+.qhead{display:grid;grid-template-columns:44px repeat(4,minmax(0,1fr));gap:6px;font-size:12px;color:var(--muted);text-align:center;padding-inline:0}
+.q{display:grid;grid-template-columns:44px repeat(4,minmax(0,1fr));gap:6px;align-items:stretch}
+.no{font-family:var(--de);font-weight:700;color:var(--accent);display:grid;place-items:center;font-variant-numeric:tabular-nums}
+.c{border:1.5px solid var(--line);border-radius:8px;background:var(--surface);min-height:48px;display:flex;flex-direction:column;justify-content:center;padding:6px 8px;text-align:center;font-family:var(--de);font-weight:700;font-size:17px;overflow-wrap:anywhere}
+.c.jp{font-family:var(--jp);font-size:15px}
+.c .lab{display:none;font-size:11px;color:var(--muted);font-weight:400;font-family:var(--jp)}
+.c.blank{background:var(--blank);padding:4px}
+.c input{width:100%;border:none;background:transparent;color:var(--ink);font-family:var(--de);font-size:17px;font-weight:700;text-align:center;padding:6px 2px;border-bottom:2px solid var(--accent);border-radius:0}
+.c.jp input{font-family:var(--jp);font-size:15px}
+.c.ok{background:var(--ok-soft);border-color:var(--ok)}
+.c.ng{background:var(--ng-soft);border-color:var(--ng)}
+.c.chk{background:var(--chk-soft);border-color:var(--chk)}
+.c .ans{font-size:13px;margin-top:2px;font-weight:700}
+.c.ok .ans{color:var(--ok)} .c.ng .ans{color:var(--ng)} .c.chk .ans{color:var(--chk)}
+.list{display:flex;flex-direction:column;gap:8px}
+
+.umlaut{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.umlaut .lab{color:var(--muted);font-size:12.5px}
+.umlaut button{font-family:var(--de);font-size:16px;font-weight:700;width:40px;height:36px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+
+.actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.score{text-align:center;font-size:18px;font-weight:700}
+.score .n{font-family:var(--de);font-size:26px;color:var(--accent);font-variant-numeric:tabular-nums}
+.legend{color:var(--muted);font-size:12.5px;text-align:center}
+
+.pdfmsg{color:var(--muted);font-size:12.5px;text-align:center;min-height:1em;margin:0}
+/* PDF用のシート（画面外で描画） */
+#sheet{position:fixed;left:-10000px;top:0;width:794px;background:#fff;color:#111;font-family:var(--jp);padding:48px 52px}
+#sheet h2{font-size:22px;margin:0 0 6px}
+#sheet .info{display:flex;justify-content:space-between;font-size:13px;color:#333;margin-bottom:18px;border-bottom:1.5px solid #333;padding-bottom:8px}
+#sheet .info .name{min-width:220px;border-bottom:1px solid #333;display:inline-block}
+#sheet table{width:100%;border-collapse:collapse;table-layout:fixed}
+#sheet th{font-size:12px;font-weight:700;background:#EEF2F1;border:1px solid #999;padding:6px 4px}
+#sheet td{border:1px solid #999;height:52px;text-align:center;vertical-align:middle;padding:4px;font-size:16px;font-weight:700;font-family:var(--de)}
+#sheet td.jp{font-family:var(--jp);font-size:14px}
+#sheet td.no{width:40px;font-family:var(--de);color:#23566B}
+#sheet td.blank{background:#fff}
+#sheet td.blank .w{color:#1B3F8F}
+#sheet td .a{display:block;font-size:11px;font-weight:700;margin-top:2px}
+#sheet td.ok .a{color:#2F8F5B} #sheet td.ng .a{color:#B3452E} #sheet td.chk .a{color:#8C6A12}
+#sheet .foot{margin-top:18px;font-size:14px;font-weight:700;text-align:right}
+
+@media (max-width:600px){
+  .qhead{display:none}
+  .q{grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line);padding-top:10px}
+  .no{grid-column:1/-1;place-items:start;font-size:14px}
+  .c .lab{display:block}
+  .list{gap:14px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>不規則動詞テスト（レベル５）</h1>
+    <p class="sub">テスト範囲 114語からランダムに10問・空欄に答えを書き込みます</p>
+  </header>
+
+  <div class="levels" role="group" aria-label="難しさ">
+    <span class="lab">難しさ</span>
+    <button class="lv" data-level="easy">簡単</button>
+    <button class="lv" data-level="normal">ふつう</button>
+    <button class="lv" data-level="hard">難しい</button>
+    <span class="lvnote" id="lvnote"></span>
+  </div>
+
+  <button class="btn primary big" id="make">テストを作成する</button>
+
+  <section id="test" aria-live="polite">
+    <div class="empty">「テストを作成する」を押すと、ここに10問が出ます</div>
+  </section>
+</div>
+<div id="sheet" aria-hidden="true"></div>
+
+<script>
+// [不定形, 過去基本形, 過去分詞, 日本語]
+const V = {
+  "fahren":["fahren", "fuhr", "gefahren", "(乗り物で)行く"],
+  "schlagen":["schlagen", "schlug", "geschlagen", "打つ"],
+  "tragen":["tragen", "trug", "getragen", "運ぶ"],
+  "laden":["laden", "lud", "geladen", "積む"],
+  "fallen":["fallen", "fiel", "gefallen", "落ちる"],
+  "fangen":["fangen", "fing", "gefangen", "捕まえる"],
+  "halten":["halten", "hielt", "gehalten", "保つ、止まる"],
+  "lassen":["lassen", "ließ", "gelassen", "～させる"],
+  "laufen":["laufen", "lief", "gelaufen", "走る"],
+  "raten":["raten", "riet", "geraten", "助言する"],
+  "schlafen":["schlafen", "schlief", "geschlafen", "眠る"],
+  "essen":["essen", "aß", "gegessen", "食べる"],
+  "geben":["geben", "gab", "gegeben", "与える"],
+  "lesen":["lesen", "las", "gelesen", "読む"],
+  "messen":["messen", "maß", "gemessen", "測る"],
+  "sehen":["sehen", "sah", "gesehen", "見る"],
+  "treten":["treten", "trat", "getreten", "踏む"],
+  "vergessen":["vergessen", "vergaß", "vergessen", "忘れる"],
+  "helfen":["helfen", "half", "geholfen", "助ける"],
+  "nehmen":["nehmen", "nahm", "genommen", "取る"],
+  "sprechen":["sprechen", "sprach", "gesprochen", "話す"],
+  "treffen":["treffen", "traf", "getroffen", "会う"],
+  "brechen":["brechen", "brach", "gebrochen", "折る"],
+  "beginnen":["beginnen", "begann", "begonnen", "始める"],
+  "gewinnen":["gewinnen", "gewann", "gewonnen", "勝つ"],
+  "schwimmen":["schwimmen", "schwamm", "geschwommen", "泳ぐ"],
+  "binden":["binden", "band", "gebunden", "結ぶ"],
+  "finden":["finden", "fand", "gefunden", "見つける"],
+  "singen":["singen", "sang", "gesungen", "歌う"],
+  "springen":["springen", "sprang", "gesprungen", "跳ぶ"],
+  "trinken":["trinken", "trank", "getrunken", "飲む"],
+  "liegen":["liegen", "lag", "gelegen", "横たわっている"],
+  "sitzen":["sitzen", "saß", "gesessen", "座っている"],
+  "bitten":["bitten", "bat", "gebeten", "頼む"],
+  "bleiben":["bleiben", "blieb", "geblieben", "とどまる"],
+  "leihen":["leihen", "lieh", "geliehen", "貸す"],
+  "scheinen":["scheinen", "schien", "geschienen", "輝く、～のように見える"],
+  "schreiben":["schreiben", "schrieb", "geschrieben", "書く"],
+  "steigen":["steigen", "stieg", "gestiegen", "登る"],
+  "weisen":["weisen", "wies", "gewiesen", "指し示す"],
+  "bieten":["bieten", "bot", "geboten", "提供する"],
+  "fliegen":["fliegen", "flog", "geflogen", "飛ぶ"],
+  "fliehen":["fliehen", "floh", "geflohen", "逃げる"],
+  "ziehen":["ziehen", "zog", "gezogen", "引く"],
+  "genießen":["genießen", "genoss", "genossen", "楽しむ"],
+  "gießen":["gießen", "goss", "gegossen", "注ぐ"],
+  "schießen":["schießen", "schoss", "geschossen", "撃つ"],
+  "gehen":["gehen", "ging", "gegangen", "行く"],
+  "haben":["haben", "hatte", "gehabt", "持っている"],
+  "kommen":["kommen", "kam", "gekommen", "来る"],
+  "sein":["sein", "war", "gewesen", "～である"],
+  "stehen":["stehen", "stand", "gestanden", "立っている"],
+  "tun":["tun", "tat", "getan", "する"],
+  "werden":["werden", "wurde", "geworden", "～になる"],
+  "bringen":["bringen", "brachte", "gebracht", "持って来る"],
+  "denken":["denken", "dachte", "gedacht", "考える"],
+  "kennen":["kennen", "kannte", "gekannt", "(体験して)知っている"],
+  "nennen":["nennen", "nannte", "genannt", "名付ける"],
+  "rennen":["rennen", "rannte", "gerannt", "駆ける"],
+  "brennen":["brennen", "brannte", "gebrannt", "燃える"],
+  "senden":["senden", "sandte", "gesandt", "送る"],
+  "wenden":["wenden", "wandte", "gewandt", "向ける"],
+  "wissen":["wissen", "wusste", "gewusst", "(知識として)知っている"],
+  "bekommen":["bekommen", "bekam", "bekommen", "もらう、受け取る"],
+  "verstehen":["verstehen", "verstand", "verstanden", "理解する"],
+  "gefallen":["gefallen", "gefiel", "gefallen", "気に入る"],
+  "verlassen":["verlassen", "verließ", "verlassen", "去る、あとにする"],
+  "verbringen":["verbringen", "verbrachte", "verbracht", "(時間を)過ごす"],
+  "erhalten":["erhalten", "erhielt", "erhalten", "受け取る"],
+  "beschreiben":["beschreiben", "beschrieb", "beschrieben", "描写する、説明する"],
+  "verwenden":["verwenden", "verwandte (verwendete)", "verwandt (verwendet)", "使う、用いる"],
+  "bestehen":["bestehen", "bestand", "bestanden", "(試験に)合格する"],
+  "erfahren":["erfahren", "erfuhr", "erfahren", "(聞いて)知る、経験する"],
+  "versprechen":["versprechen", "versprach", "versprochen", "約束する"],
+  "besprechen":["besprechen", "besprach", "besprochen", "話し合う"],
+  "verbieten":["verbieten", "verbot", "verboten", "禁止する"],
+  "behalten":["behalten", "behielt", "behalten", "取っておく、覚えておく"],
+  "erkennen":["erkennen", "erkannte", "erkannt", "見分ける、それとわかる"],
+  "verbinden":["verbinden", "verband", "verbunden", "つなぐ、結びつける"],
+  "besitzen":["besitzen", "besaß", "besessen", "所有する"],
+  "empfangen":["empfangen", "empfing", "empfangen", "受け取る、迎える"],
+  "erfinden":["erfinden", "erfand", "erfunden", "発明する"],
+  "verbrennen":["verbrennen", "verbrannte", "verbrannt", "燃やす、やけどする"],
+  "verschlafen":["verschlafen", "verschlief", "verschlafen", "寝過ごす"],
+  "missverstehen":["missverstehen", "missverstand", "missverstanden", "誤解する"],
+  "entstehen":["entstehen", "entstand", "entstanden", "生じる、できる"],
+  "vergehen":["vergehen", "verging", "vergangen", "(時が)過ぎ去る"],
+  "erscheinen":["erscheinen", "erschien", "erschienen", "現れる、出版される"],
+  "entsprechen":["entsprechen", "entsprach", "entsprochen", "～に相当する、合致する"],
+  "enthalten":["enthalten", "enthielt", "enthalten", "含む"],
+  "verhalten":["sich verhalten", "verhielt", "verhalten", "振る舞う"],
+  "betreffen":["betreffen", "betraf", "betroffen", "～に関係する"],
+  "erziehen":["erziehen", "erzog", "erzogen", "育てる、しつける"],
+  "zerbrechen":["zerbrechen", "zerbrach", "zerbrochen", "割れる、割る"],
+  "entlassen":["entlassen", "entließ", "entlassen", "解雇する、退院させる"],
+  "betreten":["betreten", "betrat", "betreten", "(部屋などに)入る"],
+  "vertreten":["vertreten", "vertrat", "vertreten", "代理を務める、代表する"],
+  "beweisen":["beweisen", "bewies", "bewiesen", "証明する"],
+  "verraten":["verraten", "verriet", "verraten", "(秘密を)漏らす、裏切る"],
+  "vergeben":["vergeben", "vergab", "vergeben", "許す、(賞などを)与える"],
+  "vertragen":["vertragen", "vertrug", "vertragen", "(食べ物などが)体に合う"],
+  "betragen":["betragen", "betrug", "betragen", "(金額などが)～になる"],
+  "verschreiben":["verschreiben", "verschrieb", "verschrieben", "処方する"],
+  "ertrinken":["ertrinken", "ertrank", "ertrunken", "溺れ死ぬ"],
+  "gestehen":["gestehen", "gestand", "gestanden", "白状する、認める"],
+  "ergeben":["ergeben", "ergab", "ergeben", "結果として生じる"],
+  "bedenken":["bedenken", "bedachte", "bedacht", "よく考える"],
+  "ertragen":["ertragen", "ertrug", "ertragen", "耐える、我慢する"],
+  "empfinden":["empfinden", "empfand", "empfunden", "感じる"],
+  "verleihen":["verleihen", "verlieh", "verliehen", "貸し出す、授与する"],
+  "erraten":["erraten", "erriet", "erraten", "言い当てる"],
+  "besteigen":["besteigen", "bestieg", "bestiegen", "(山などに)登る"],
+  "versenden":["versenden", "versandte (versendete)", "versandt (versendet)", "発送する"],
+  "zerfallen":["zerfallen", "zerfiel", "zerfallen", "崩れる、分解する"]
+};
+const KEYS = Object.keys(V);
+const HEAD = ["日本語","不定形","過去基本形","過去分詞"];
+const LEVELS = {
+  easy:   {pool:[2,3],   n:1, note:"日本語と不定形は表示。過去基本形か過去分詞のどちらか1か所が空欄になります。"},
+  normal: {pool:[1,2,3], n:2, note:"日本語は表示。不定形・過去基本形・過去分詞のうち2か所が空欄になります。"},
+  hard:   {pool:[0,1,2,3], n:2, note:"日本語も含めた4か所のうち2か所が空欄になります。"}
+};
+const store = {
+  get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } },
+  set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+};
+let level = store.get("vt5-level") || "easy";
+if(!LEVELS[level]) level = "easy";
+let qs = [], graded = false, lastInput = null;
+
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function vals(key){ const [inf,past,pp,jp] = V[key]; return [jp,inf,past,pp]; }
+
+function renderLevel(){
+  document.querySelectorAll(".lv").forEach(b => b.setAttribute("aria-pressed", b.dataset.level===level));
+  document.getElementById("lvnote").textContent = LEVELS[level].note;
+}
+
+function make(){
+  const L = LEVELS[level];
+  qs = shuffle(KEYS.slice()).slice(0,10).map(key => ({key, hidden:new Set(shuffle(L.pool.slice()).slice(0,L.n))}));
+  graded = false; lastInput = null;
+  renderTest();
+  const first = document.querySelector("#test input"); if(first) first.focus({preventScroll:true});
+  document.getElementById("test").scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+// 日本語は括弧書きと「～」を無視して比べる
+function normJp(s){ return s.replace(/[（(][^）)]*[）)]/g,"").replace(/[～~〜\s　]/g,"").trim(); }
+function normDe(s){ return s.trim().toLowerCase().replace(/\s+/g," "); }
+// "verwandte (verwendete)" のような答えは、どちらの形でも正解にする
+function okDe(a,val){ const m = val.match(/^(.+) \((.+)\)$/); return (m ? [m[1],m[2],val] : [val]).some(v => normDe(a)===normDe(v)); }
+
+function renderTest(){
+  const box = document.getElementById("test"); box.innerHTML = "";
+
+  const um = document.createElement("div"); um.className = "umlaut";
+  um.innerHTML = '<span class="lab">入力ボタン</span>';
+  ["ä","ö","ü","ß"].forEach(ch => {
+    const b = document.createElement("button"); b.type="button"; b.textContent = ch; b.lang="de";
+    b.addEventListener("mousedown", e => e.preventDefault());
+    b.addEventListener("click", () => {
+      const t = (document.activeElement && document.activeElement.tagName==="INPUT") ? document.activeElement : lastInput;
+      if(!t || t.readOnly) return;
+      const s = t.selectionStart ?? t.value.length, e = t.selectionEnd ?? t.value.length;
+      t.value = t.value.slice(0,s) + ch + t.value.slice(e); t.focus(); t.setSelectionRange(s+1,s+1);
+    });
+    um.appendChild(b);
+  });
+  if(!graded) box.appendChild(um);
+
+  const head = document.createElement("div"); head.className = "qhead";
+  head.innerHTML = "<span></span>" + HEAD.map(h => `<span>${h}</span>`).join("");
+  box.appendChild(head);
+
+  const list = document.createElement("div"); list.className = "list";
+  let ok = 0, total = 0;
+  qs.forEach((q,qi) => {
+    const row = document.createElement("div"); row.className = "q";
+    const no = document.createElement("div"); no.className = "no"; no.textContent = "問" + (qi+1); row.appendChild(no);
+    vals(q.key).forEach((val,i) => {
+      const c = document.createElement("div"); c.className = "c" + (i===0 ? " jp" : "");
+      const lab = document.createElement("span"); lab.className = "lab"; lab.textContent = HEAD[i]; c.appendChild(lab);
+      if(!q.hidden.has(i)){
+        const t = document.createElement("span"); t.textContent = val; if(i!==0) t.lang = "de"; c.appendChild(t);
+      } else {
+        c.classList.add("blank");
+        const inp = document.createElement("input");
+        inp.type = "text"; inp.autocomplete = "off"; inp.spellcheck = false;
+        inp.setAttribute("autocapitalize","off"); inp.setAttribute("autocorrect","off");
+        if(i!==0) inp.lang = "de";
+        inp.setAttribute("aria-label", `${qi+1}問目 ${HEAD[i]}`);
+        q.ans = q.ans || {}; inp.value = q.ans[i] || "";
+        inp.addEventListener("input", () => { q.ans[i] = inp.value; });
+        inp.addEventListener("focus", () => { lastInput = inp; });
+        inp.addEventListener("keydown", e => {
+          if(e.key==="Enter" && !e.isComposing){
+            e.preventDefault();
+            const all = [...document.querySelectorAll("#test input")]; const n = all[all.indexOf(inp)+1];
+            if(n) n.focus(); else document.getElementById("grade").focus();
+          }
+        });
+        c.appendChild(inp);
+        if(graded){
+          inp.readOnly = true;
+          const a = (q.ans[i]||"");
+          let st;
+          if(i===0){
+            st = normJp(a) && normJp(a)===normJp(val) ? "ok" : (a.trim() ? "chk" : "ng");
+          } else {
+            st = okDe(a,val) ? "ok" : "ng";
+          }
+          c.classList.add(st);
+          if(i!==0){ total++; if(st==="ok") ok++; }
+          else if(st==="ok"){ total++; ok++; }
+          else if(st==="ng"){ total++; }
+          const ans = document.createElement("div"); ans.className = "ans";
+          ans.textContent = st==="ok" ? "○ 正解" : (st==="chk" ? "答え：" + val : "× 正解：" + val);
+          if(i!==0 && st!=="ok") ans.lang = "de";
+          c.appendChild(ans);
+        }
+      }
+      row.appendChild(c);
+    });
+    list.appendChild(row);
+  });
+  box.appendChild(list);
+
+  if(graded){
+    const sc = document.createElement("p"); sc.className = "score";
+    sc.innerHTML = `<span class="n">${ok}</span> / ${total} 正解`;
+    box.appendChild(sc);
+    if(document.querySelector("#test .c.chk")){
+      const lg = document.createElement("p"); lg.className = "legend";
+      lg.textContent = "日本語は言い方が何通りもあるので、黄色の欄は答えと見比べて自分で判断してください（点数には入れていません）。";
+      box.appendChild(lg);
+    }
+  }
+
+  const act = document.createElement("div"); act.className = "actions";
+  if(!graded){
+    const g = document.createElement("button"); g.className = "btn primary"; g.id = "grade"; g.textContent = "答え合わせをする";
+    g.addEventListener("click", () => { graded = true; renderTest(); });
+    act.appendChild(g);
+    act.appendChild(pdfButton());
+  } else {
+    const r = document.createElement("button"); r.className = "btn"; r.textContent = "同じ問題をやり直す";
+    r.addEventListener("click", () => { qs.forEach(q => q.ans = {}); graded = false; renderTest(); });
+    const n = document.createElement("button"); n.className = "btn primary"; n.textContent = "新しいテストを作成する";
+    n.addEventListener("click", make);
+    act.append(r, n, pdfButton());
+  }
+  box.appendChild(act);
+  const msg = document.createElement("p"); msg.className = "pdfmsg"; msg.id = "pdfmsg"; box.appendChild(msg);
+  box.style.display = "flex"; box.style.flexDirection = "column"; box.style.gap = "12px";
+}
+
+// ---- PDFでダウンロード ----
+const LEVEL_NAME = {easy:"簡単", normal:"ふつう", hard:"難しい"};
+const LIBS = [
+  "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js",
+  "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+];
+let libsReady = null;
+function loadLibs(){
+  if(!libsReady) libsReady = Promise.all(LIBS.map(src => new Promise((ok,ng) => {
+    const sc = document.createElement("script"); sc.src = src; sc.onload = ok; sc.onerror = () => ng(new Error("load")); document.head.appendChild(sc);
+  }))).catch(e => { libsReady = null; throw e; });
+  return libsReady;
+}
+function pdfButton(){
+  const b = document.createElement("button"); b.className = "btn"; b.id = "pdf"; b.textContent = "PDFでダウンロード";
+  b.addEventListener("click", () => downloadPdf(b));
+  return b;
+}
+function setMsg(t){ const m = document.getElementById("pdfmsg"); if(m) m.textContent = t; }
+function esc(t){ const d = document.createElement("div"); d.textContent = t; return d.innerHTML; }
+
+function buildSheet(){
+  const d = new Date(), date = `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
+  let rows = "", ok = 0, total = 0;
+  qs.forEach((q,qi) => {
+    rows += `<tr><td class="no">${qi+1}</td>`;
+    vals(q.key).forEach((val,i) => {
+      const jp = i===0 ? " jp" : "";
+      if(!q.hidden.has(i)){ rows += `<td class="${jp}">${esc(val)}</td>`; return; }
+      const a = ((q.ans||{})[i]||"").trim();
+      if(!graded){ rows += `<td class="blank${jp}"><span class="w">${esc(a)}</span></td>`; return; }
+      let st;
+      if(i===0) st = normJp(a) && normJp(a)===normJp(val) ? "ok" : (a ? "chk" : "ng");
+      else st = okDe(a,val) ? "ok" : "ng";
+      if(st==="ok") ok++; if(st!=="chk") total++;
+      const mark = st==="ok" ? "○ 正解" : (st==="chk" ? "答え：" : "× 正解：") + (st==="ok" ? "" : val);
+      rows += `<td class="blank ${st}${jp}"><span class="w">${esc(a)}</span><span class="a">${esc(mark)}</span></td>`;
+    });
+    rows += "</tr>";
+  });
+  const sheet = document.getElementById("sheet");
+  sheet.innerHTML =
+    `<h2>ドイツ語 不規則動詞テスト（レベル５）</h2>` +
+    `<div class="info"><span>難しさ：${LEVEL_NAME[level]}　／　${date}</span><span>名前：<span class="name"></span></span></div>` +
+    `<table><thead><tr><th style="width:40px"></th>${HEAD.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows}</tbody></table>` +
+    (graded ? `<div class="foot">${ok} / ${total} 正解</div>` : `<div class="foot">　　　／ 点</div>`);
+  return sheet;
+}
+
+async function downloadPdf(btn){
+  if(!qs.length) return;
+  btn.disabled = true; setMsg("PDFを作成しています…");
+  try{
+    await loadLibs();
+    if(document.fonts && document.fonts.ready) await document.fonts.ready;
+    const sheet = buildSheet();
+    const canvas = await window.html2canvas(sheet, {scale:2, backgroundColor:"#ffffff"});
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({unit:"mm", format:"a4", orientation:"portrait"});
+    const w = 210, h = canvas.height * w / canvas.width;
+    pdf.addImage(canvas.toDataURL("image/jpeg", 0.92), "JPEG", 0, 0, w, Math.min(h, 297));
+    const blob = pdf.output("blob");
+    const d = new Date(), stamp = `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}`;
+    const filename = `不規則動詞テスト_レベル５_${LEVEL_NAME[level]}_${stamp}.pdf`;
+    const dl = window.claude && window.claude.use ? await window.claude.use("downloads") : null;
+    if(dl){
+      try{ await dl.save({filename, data:blob}); setMsg("PDFを保存しました"); }
+      catch(e){ setMsg(e && e.code==="declined" ? "保存を取りやめました" : "PDFを保存できませんでした"); }
+    } else {
+      const url = URL.createObjectURL(blob), a = document.createElement("a");
+      a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 5000);
+      setMsg("PDFを保存しました");
+    }
+  }catch(e){
+    setMsg("PDFを作成できませんでした。通信状態を確かめて、もう一度押してください。");
+  }finally{
+    btn.disabled = false;
+  }
+}
+
+document.querySelectorAll(".lv").forEach(b => b.addEventListener("click", () => {
+  level = b.dataset.level; store.set("vt5-level", level); renderLevel();
+}));
+document.getElementById("make").addEventListener("click", make);
+renderLevel();
+</script>
+</body>
+</html>
