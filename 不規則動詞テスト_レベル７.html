@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>不規則動詞テスト（レベル４）</title>
+<title>不規則動詞テスト（レベル７）</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=BIZ+UDPGothic:wght@400;700&display=swap">
 <style>
@@ -104,8 +104,8 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline
 <body>
 <div class="wrap">
   <header>
-    <h1>不規則動詞テスト（レベル４）</h1>
-    <p class="sub">テスト範囲 83語からランダムに10問・空欄に答えを書き込みます</p>
+    <h1>不規則動詞テスト（レベル７）</h1>
+    <p class="sub">テスト範囲 121語からランダムに10問・空欄に答えを書き込みます</p>
   </header>
 
   <div class="levels" role="group" aria-label="難しさ">
@@ -127,55 +127,55 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline
 <script>
 // [不定形, 過去基本形, 過去分詞, 日本語]
 const V = {
-  beginnen:["beginnen","begann","begonnen","始める"],
-  bitten:["bitten","bat","gebeten","頼む"],
-  bleiben:["bleiben","blieb","geblieben","とどまる"],
-  bringen:["bringen","brachte","gebracht","持って来る"],
-  denken:["denken","dachte","gedacht","考える"],
-  essen:["essen","aß","gegessen","食べる"],
-  fahren:["fahren","fuhr","gefahren","(乗り物で)行く"],
-  fallen:["fallen","fiel","gefallen","落ちる"],
-  fangen:["fangen","fing","gefangen","捕まえる"],
-  finden:["finden","fand","gefunden","見つける"],
-  fliegen:["fliegen","flog","geflogen","飛ぶ"],
-  geben:["geben","gab","gegeben","与える"],
-  gehen:["gehen","ging","gegangen","行く"],
-  gewinnen:["gewinnen","gewann","gewonnen","勝つ"],
-  greifen:["greifen","griff","gegriffen","つかむ"],
-  haben:["haben","hatte","gehabt","持っている"],
-  "heißen":["heißen","hieß","geheißen","～という名前である"],
-  helfen:["helfen","half","geholfen","助ける"],
-  kennen:["kennen","kannte","gekannt","(体験して)知っている"],
-  kommen:["kommen","kam","gekommen","来る"],
-  laden:["laden","lud","geladen","積む"],
-  laufen:["laufen","lief","gelaufen","走る"],
-  lesen:["lesen","las","gelesen","読む"],
-  liegen:["liegen","lag","gelegen","横たわっている"],
-  nehmen:["nehmen","nahm","genommen","取る"],
-  rufen:["rufen","rief","gerufen","呼ぶ"],
-  schlafen:["schlafen","schlief","geschlafen","眠る"],
-  schlagen:["schlagen","schlug","geschlagen","打つ"],
-  "schließen":["schließen","schloss","geschlossen","閉める"],
-  schreiben:["schreiben","schrieb","geschrieben","書く"],
-  schwimmen:["schwimmen","schwamm","geschwommen","泳ぐ"],
-  sehen:["sehen","sah","gesehen","見る"],
-  sein:["sein","war","gewesen","～である"],
-  senden:["senden","sandte","gesandt","送る"],
-  singen:["singen","sang","gesungen","歌う"],
-  sitzen:["sitzen","saß","gesessen","座っている"],
-  sprechen:["sprechen","sprach","gesprochen","話す"],
-  springen:["springen","sprang","gesprungen","跳ぶ"],
-  stehen:["stehen","stand","gestanden","立っている"],
-  tragen:["tragen","trug","getragen","運ぶ"],
-  treffen:["treffen","traf","getroffen","会う"],
-  trinken:["trinken","trank","getrunken","飲む"],
-  tun:["tun","tat","getan","する"],
-  vergessen:["vergessen","vergaß","vergessen","忘れる"],
-  verlieren:["verlieren","verlor","verloren","失う"],
-  waschen:["waschen","wusch","gewaschen","洗う"],
-  werden:["werden","wurde","geworden","～になる"],
-  wissen:["wissen","wusste","gewusst","(知識として)知っている"],
-  ziehen:["ziehen","zog","gezogen","引く"],
+  "beginnen":["beginnen", "begann", "begonnen", "始める"],
+  "bitten":["bitten", "bat", "gebeten", "頼む"],
+  "bleiben":["bleiben", "blieb", "geblieben", "とどまる"],
+  "bringen":["bringen", "brachte", "gebracht", "持って来る"],
+  "denken":["denken", "dachte", "gedacht", "考える"],
+  "essen":["essen", "aß", "gegessen", "食べる"],
+  "fahren":["fahren", "fuhr", "gefahren", "(乗り物で)行く"],
+  "fallen":["fallen", "fiel", "gefallen", "落ちる"],
+  "fangen":["fangen", "fing", "gefangen", "捕まえる"],
+  "finden":["finden", "fand", "gefunden", "見つける"],
+  "fliegen":["fliegen", "flog", "geflogen", "飛ぶ"],
+  "geben":["geben", "gab", "gegeben", "与える"],
+  "gehen":["gehen", "ging", "gegangen", "行く"],
+  "gewinnen":["gewinnen", "gewann", "gewonnen", "勝つ"],
+  "greifen":["greifen", "griff", "gegriffen", "つかむ"],
+  "haben":["haben", "hatte", "gehabt", "持っている"],
+  "heißen":["heißen", "hieß", "geheißen", "～という名前である"],
+  "helfen":["helfen", "half", "geholfen", "助ける"],
+  "kennen":["kennen", "kannte", "gekannt", "(体験して)知っている"],
+  "kommen":["kommen", "kam", "gekommen", "来る"],
+  "laden":["laden", "lud", "geladen", "積む"],
+  "laufen":["laufen", "lief", "gelaufen", "走る"],
+  "lesen":["lesen", "las", "gelesen", "読む"],
+  "liegen":["liegen", "lag", "gelegen", "横たわっている"],
+  "nehmen":["nehmen", "nahm", "genommen", "取る"],
+  "rufen":["rufen", "rief", "gerufen", "呼ぶ"],
+  "schlafen":["schlafen", "schlief", "geschlafen", "眠る"],
+  "schlagen":["schlagen", "schlug", "geschlagen", "打つ"],
+  "schließen":["schließen", "schloss", "geschlossen", "閉める"],
+  "schreiben":["schreiben", "schrieb", "geschrieben", "書く"],
+  "schwimmen":["schwimmen", "schwamm", "geschwommen", "泳ぐ"],
+  "sehen":["sehen", "sah", "gesehen", "見る"],
+  "sein":["sein", "war", "gewesen", "～である"],
+  "senden":["senden", "sandte", "gesandt", "送る"],
+  "singen":["singen", "sang", "gesungen", "歌う"],
+  "sitzen":["sitzen", "saß", "gesessen", "座っている"],
+  "sprechen":["sprechen", "sprach", "gesprochen", "話す"],
+  "springen":["springen", "sprang", "gesprungen", "跳ぶ"],
+  "stehen":["stehen", "stand", "gestanden", "立っている"],
+  "tragen":["tragen", "trug", "getragen", "運ぶ"],
+  "treffen":["treffen", "traf", "getroffen", "会う"],
+  "trinken":["trinken", "trank", "getrunken", "飲む"],
+  "tun":["tun", "tat", "getan", "する"],
+  "vergessen":["vergessen", "vergaß", "vergessen", "忘れる"],
+  "verlieren":["verlieren", "verlor", "verloren", "失う"],
+  "waschen":["waschen", "wusch", "gewaschen", "洗う"],
+  "werden":["werden", "wurde", "geworden", "～になる"],
+  "wissen":["wissen", "wusste", "gewusst", "(知識として)知っている"],
+  "ziehen":["ziehen", "zog", "gezogen", "引く"],
   "bekommen":["bekommen", "bekam", "bekommen", "もらう、受け取る"],
   "verstehen":["verstehen", "verstand", "verstanden", "理解する"],
   "gefallen":["gefallen", "gefiel", "gefallen", "気に入る"],
@@ -209,7 +209,45 @@ const V = {
   "ertragen":["ertragen", "ertrug", "ertragen", "耐える、我慢する"],
   "ergreifen":["ergreifen", "ergriff", "ergriffen", "つかむ"],
   "empfinden":["empfinden", "empfand", "empfunden", "感じる"],
-  "zerfallen":["zerfallen", "zerfiel", "zerfallen", "崩れる、分解する"]
+  "zerfallen":["zerfallen", "zerfiel", "zerfallen", "崩れる、分解する"],
+  "ankommen":["ankommen", "kam an", "angekommen", "到着する"],
+  "aufstehen":["aufstehen", "stand auf", "aufgestanden", "起きる、立ち上がる"],
+  "anfangen":["anfangen", "fing an", "angefangen", "始める、始まる"],
+  "anrufen":["anrufen", "rief an", "angerufen", "電話をかける"],
+  "einladen":["einladen", "lud ein", "eingeladen", "招待する"],
+  "fernsehen":["fernsehen", "sah fern", "ferngesehen", "テレビを見る"],
+  "aussehen":["aussehen", "sah aus", "ausgesehen", "～のように見える"],
+  "mitnehmen":["mitnehmen", "nahm mit", "mitgenommen", "持って行く、連れて行く"],
+  "abfahren":["abfahren", "fuhr ab", "abgefahren", "(乗り物で)出発する"],
+  "mitkommen":["mitkommen", "kam mit", "mitgekommen", "一緒に来る"],
+  "mitbringen":["mitbringen", "brachte mit", "mitgebracht", "持って来る、連れて来る"],
+  "zurückkommen":["zurückkommen", "kam zurück", "zurückgekommen", "戻って来る"],
+  "ausgehen":["ausgehen", "ging aus", "ausgegangen", "外出する"],
+  "anziehen":["anziehen", "zog an", "angezogen", "(服を)着る"],
+  "einschlafen":["einschlafen", "schlief ein", "eingeschlafen", "寝入る"],
+  "stattfinden":["stattfinden", "fand statt", "stattgefunden", "行われる、開催される"],
+  "teilnehmen":["teilnehmen", "nahm teil", "teilgenommen", "参加する"],
+  "vorhaben":["vorhaben", "hatte vor", "vorgehabt", "予定している"],
+  "wehtun":["wehtun", "tat weh", "wehgetan", "痛む"],
+  "vorschlagen":["vorschlagen", "schlug vor", "vorgeschlagen", "提案する"],
+  "zurückgeben":["zurückgeben", "gab zurück", "zurückgegeben", "返す"],
+  "ansehen":["ansehen", "sah an", "angesehen", "じっと見る"],
+  "ausfallen":["ausfallen", "fiel aus", "ausgefallen", "中止になる"],
+  "nachdenken":["nachdenken", "dachte nach", "nachgedacht", "よく考える"],
+  "aufschreiben":["aufschreiben", "schrieb auf", "aufgeschrieben", "書き留める"],
+  "vorlesen":["vorlesen", "las vor", "vorgelesen", "読んで聞かせる"],
+  "aussprechen":["aussprechen", "sprach aus", "ausgesprochen", "発音する"],
+  "abfliegen":["abfliegen", "flog ab", "abgeflogen", "(飛行機で)出発する"],
+  "abschließen":["abschließen", "schloss ab", "abgeschlossen", "鍵をかける、終える"],
+  "abwaschen":["abwaschen", "wusch ab", "abgewaschen", "食器を洗う"],
+  "aufessen":["aufessen", "aß auf", "aufgegessen", "食べ切る"],
+  "austrinken":["austrinken", "trank aus", "ausgetrunken", "飲み干す"],
+  "weglaufen":["weglaufen", "lief weg", "weggelaufen", "逃げる"],
+  "ablaufen":["ablaufen", "lief ab", "abgelaufen", "期限が切れる"],
+  "mithelfen":["mithelfen", "half mit", "mitgeholfen", "手伝う"],
+  "mitsingen":["mitsingen", "sang mit", "mitgesungen", "一緒に歌う"],
+  "eintragen":["eintragen", "trug ein", "eingetragen", "記入する"],
+  "zurückbleiben":["zurückbleiben", "blieb zurück", "zurückgeblieben", "取り残される"]
 };
 const KEYS = Object.keys(V);
 const HEAD = ["日本語","不定形","過去基本形","過去分詞"];
@@ -222,7 +260,7 @@ const store = {
   get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } },
   set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
 };
-let level = store.get("vt4-level") || "easy";
+let level = store.get("vt7-level") || "easy";
 if(!LEVELS[level]) level = "easy";
 let qs = [], graded = false, lastInput = null;
 
@@ -393,7 +431,7 @@ function buildSheet(){
   });
   const sheet = document.getElementById("sheet");
   sheet.innerHTML =
-    `<h2>ドイツ語 不規則動詞テスト（レベル４）</h2>` +
+    `<h2>ドイツ語 不規則動詞テスト（レベル７）</h2>` +
     `<div class="info"><span>難しさ：${LEVEL_NAME[level]}　／　${date}</span><span>名前：<span class="name"></span></span></div>` +
     `<table><thead><tr><th style="width:40px"></th>${HEAD.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows}</tbody></table>` +
     (graded ? `<div class="foot">${ok} / ${total} 正解</div>` : `<div class="foot">　　　／ 点</div>`);
@@ -414,7 +452,7 @@ async function downloadPdf(btn){
     pdf.addImage(canvas.toDataURL("image/jpeg", 0.92), "JPEG", 0, 0, w, Math.min(h, 297));
     const blob = pdf.output("blob");
     const d = new Date(), stamp = `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}`;
-    const filename = `不規則動詞テスト_レベル４_${LEVEL_NAME[level]}_${stamp}.pdf`;
+    const filename = `不規則動詞テスト_レベル７_${LEVEL_NAME[level]}_${stamp}.pdf`;
     const dl = window.claude && window.claude.use ? await window.claude.use("downloads") : null;
     if(dl){
       try{ await dl.save({filename, data:blob}); setMsg("PDFを保存しました"); }
@@ -433,7 +471,7 @@ async function downloadPdf(btn){
 }
 
 document.querySelectorAll(".lv").forEach(b => b.addEventListener("click", () => {
-  level = b.dataset.level; store.set("vt4-level", level); renderLevel();
+  level = b.dataset.level; store.set("vt7-level", level); renderLevel();
 }));
 document.getElementById("make").addEventListener("click", make);
 renderLevel();
