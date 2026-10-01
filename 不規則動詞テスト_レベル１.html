@@ -225,7 +225,7 @@ function renderTest(){
       const t = (document.activeElement && document.activeElement.tagName==="INPUT") ? document.activeElement : lastInput;
       if(!t || t.readOnly) return;
       const s = t.selectionStart ?? t.value.length, e = t.selectionEnd ?? t.value.length;
-      t.value = t.value.slice(0,s) + ch + t.value.slice(e); t.focus(); t.setSelectionRange(s+1,s+1);
+      t.value = t.value.slice(0,s) + ch + t.value.slice(e); t.focus(); t.setSelectionRange(s+1,s+1); t.dispatchEvent(new Event("input", {bubbles:true}));
     });
     um.appendChild(b);
   });
